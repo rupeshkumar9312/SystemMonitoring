@@ -42,6 +42,7 @@ namespace SystemMonitoring.Forms
                 {
                     if ((int)response.StatusCode == 200)
                     {
+                        StaticValues.prn = prn;
                         this.Hide();
                         new Welcome().Show();
 

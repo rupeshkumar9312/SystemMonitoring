@@ -43,7 +43,7 @@ namespace ChromeData
 
 
         static List<HistoryItem> allHistoryItems = new List<HistoryItem>();
-        public List<HistoryItem> GetHistory()
+        public List<HistoryItem> GetHistory(string prn)
         {
             long last_visit = FileUtil.Read();
             string chromeHistoryFile = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)
@@ -71,8 +71,8 @@ namespace ChromeData
                     {
                         URL = Convert.ToString(historyRow["url"]),
                         Title = Convert.ToString(historyRow["title"]),
-                        
 
+                        User = prn
                     };
 
                     // Chrome stores time elapsed since Jan 1, 1601 (UTC format) in microseconds

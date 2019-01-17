@@ -10,17 +10,19 @@ using System.Windows.Forms;
 using SystemMonitoring.BusinessLogic;
 using ChromeData;
 using System.Net.Http;
+using SystemMonitoring.Model;
 
 namespace SystemMonitoring.Forms
 {
     public partial class Welcome : Form
     {
+        ChromeHistory ch;
         private int _ticks;
         public Welcome()
         {
             InitializeComponent();
 
-            ChromeHistory ch = new ChromeHistory("");
+            ch = new ChromeHistory(StaticValues.prn);
             ch.SaveLastTime();
             timer1.Start();
 
@@ -44,9 +46,8 @@ namespace SystemMonitoring.Forms
                      * get history
                      * 
                      */
-
-                    ChromeHistory ch = new ChromeHistory("");
-                    List<HistoryItem> history = ch.GetHistory();
+                     
+                    List<HistoryItem> history = ch.GetHistory(StaticValues.prn);
                     if(history.Count > 0)
                     {
 
