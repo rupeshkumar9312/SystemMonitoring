@@ -30,6 +30,7 @@ namespace ChromeData
             connection.Open();
 
             SQLiteCommand cmd = new SQLiteCommand();
+            cmd.Connection = connection;
             cmd.CommandText = "select visit_time from visits order by visit_time desc limit 1;";
             SQLiteDataReader dr = cmd.ExecuteReader();
             while(dr.Read())

