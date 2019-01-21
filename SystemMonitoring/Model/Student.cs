@@ -8,10 +8,10 @@ namespace SystemMonitoring.Model
 {
     class Student
     {
-        public String PRN { get; set; }
-        public String Name { get; set; }
-        public String Password { get; set; }
-        public String Email { get; set; }
+        public string PRN { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
         public string Course { get; set; }
         public string Batch { get; set; }
         

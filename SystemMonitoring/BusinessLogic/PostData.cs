@@ -15,6 +15,7 @@ namespace SystemMonitoring.BusinessLogic
     {
         public static HttpResponseMessage SendToServer(object obj,string function)
         {
+
             var json = new JavaScriptSerializer().Serialize(obj);
 
             Console.WriteLine("Inside POST DATA " + json);

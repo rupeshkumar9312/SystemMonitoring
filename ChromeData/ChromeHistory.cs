@@ -72,8 +72,11 @@ namespace ChromeData
                         URL = Convert.ToString(historyRow["url"]),
                         Title = Convert.ToString(historyRow["title"]),
 
-                        User = prn
+                        User = prn,
+                        Id = DateTime.Now.Ticks.ToString()
+                        
                     };
+                    Console.WriteLine("ID " + historyItem.Id);
 
                     // Chrome stores time elapsed since Jan 1, 1601 (UTC format) in microseconds
                     long utcMicroSeconds = Convert.ToInt64(historyRow["visit_time"]);

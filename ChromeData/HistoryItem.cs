@@ -16,6 +16,8 @@ namespace ChromeData
 
         public string User { get; set; }
 
+        public string Id { get; set; }
+
     }
 
 }

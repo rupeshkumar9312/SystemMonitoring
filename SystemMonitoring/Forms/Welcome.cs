@@ -23,6 +23,8 @@ namespace SystemMonitoring.Forms
             InitializeComponent();
 
             ch = new ChromeHistory(StaticValues.prn);
+            //CheckProcess cp = new CheckProcess();
+            //if(!cp.isRunning("chrome"))
             ch.SaveLastTime();
             timer1.Start();
 
