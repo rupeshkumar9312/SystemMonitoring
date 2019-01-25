@@ -84,5 +84,12 @@ namespace SystemMonitoring.Forms
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void Welcome_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Console.WriteLine("Application Closed");
+           
+            Application.Exit();
+        }
     }
 }

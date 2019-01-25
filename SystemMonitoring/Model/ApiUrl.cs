@@ -15,5 +15,6 @@ namespace SystemMonitoring.Model
         public string register = "http://localhost:6080/WebApi/student/register";
         public string login = "http://localhost:6080/WebApi/student/login";
         public string history = "http://localhost:6080/WebApi/url";
+        public string image = "http://localhost:6080/WebApi/admin/image";
     }
 }

@@ -17,8 +17,15 @@ namespace SystemMonitoring
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Forms.Login());
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
 
             //Console.WriteLine("Hello");
+        }
+
+        static void OnProcessExit(object sender, EventArgs e)
+        {
+            
+            Console.WriteLine("I'm out of here");
         }
     }
 }

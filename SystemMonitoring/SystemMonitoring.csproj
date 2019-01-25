@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>SystemMonitoring.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -120,6 +123,7 @@
     </Compile>
     <Compile Include="Model\ApiUrl.cs" />
     <Compile Include="Model\Credentials.cs" />
+    <Compile Include="Model\Screenshot.cs" />
     <Compile Include="Model\StaticValues.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Program.cs" />

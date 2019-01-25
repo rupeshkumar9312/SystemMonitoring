@@ -31,6 +31,10 @@ namespace SystemMonitoring.BusinessLogic
                     break;
                 case "history":
                     url = apiUrl.history;
+                    
+                    break;
+                case "image":
+                    url = apiUrl.image;
                     break;
             }
             //switch(function)

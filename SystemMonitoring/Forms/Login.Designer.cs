@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupLogin = new System.Windows.Forms.GroupBox();
+            this.lbl_egister = new System.Windows.Forms.LinkLabel();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblForgotPwd = new System.Windows.Forms.LinkLabel();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtPRN = new System.Windows.Forms.TextBox();
             this.lblPRN = new System.Windows.Forms.Label();
-            this.lbl_egister = new System.Windows.Forms.LinkLabel();
             this.groupLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +56,17 @@
             this.groupLogin.Size = new System.Drawing.Size(445, 304);
             this.groupLogin.TabIndex = 0;
             this.groupLogin.TabStop = false;
+            // 
+            // lbl_egister
+            // 
+            this.lbl_egister.AutoSize = true;
+            this.lbl_egister.Location = new System.Drawing.Point(161, 251);
+            this.lbl_egister.Name = "lbl_egister";
+            this.lbl_egister.Size = new System.Drawing.Size(72, 13);
+            this.lbl_egister.TabIndex = 14;
+            this.lbl_egister.TabStop = true;
+            this.lbl_egister.Text = "Register Here";
+            this.lbl_egister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbl_egister_LinkClicked);
             // 
             // btnLogin
             // 
@@ -119,17 +130,6 @@
             this.lblPRN.TabIndex = 8;
             this.lblPRN.Text = "PRN No.";
             // 
-            // lbl_egister
-            // 
-            this.lbl_egister.AutoSize = true;
-            this.lbl_egister.Location = new System.Drawing.Point(161, 251);
-            this.lbl_egister.Name = "lbl_egister";
-            this.lbl_egister.Size = new System.Drawing.Size(72, 13);
-            this.lbl_egister.TabIndex = 14;
-            this.lbl_egister.TabStop = true;
-            this.lbl_egister.Text = "Register Here";
-            this.lbl_egister.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbl_egister_LinkClicked);
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,6 +139,7 @@
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Login_FormClosing);
             this.groupLogin.ResumeLayout(false);
             this.groupLogin.PerformLayout();
             this.ResumeLayout(false);
