@@ -8,17 +8,18 @@ namespace SystemMonitoring.Model
 {
     class Screenshot
     {
-        public string name { get; set; }
-        public string time { get; set; }
-        public string user { get; set; }
-        public string path { get; set; }
+        private string fileName;
+        private string v;
+        private string prn;
+        private string response;
 
-        public Screenshot(string name, string time, string user, string path)
+        public Screenshot(string fileName, string v, string prn, string response)
         {
-            this.name = name;
-            this.time = time;
-            this.user = user;
-            this.path = path;
+            this.fileName = fileName;
+            this.v = v;
+            this.prn = prn;
+            this.response = response;
         }
+        
     }
 }

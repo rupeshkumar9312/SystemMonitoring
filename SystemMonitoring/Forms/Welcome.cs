@@ -11,6 +11,8 @@ using SystemMonitoring.BusinessLogic;
 using ChromeData;
 using System.Net.Http;
 using SystemMonitoring.Model;
+using System.Diagnostics;
+using System.IO;
 
 namespace SystemMonitoring.Forms
 {
@@ -18,17 +20,40 @@ namespace SystemMonitoring.Forms
     {
         ChromeHistory ch;
         private int _ticks;
+        private int _ticksImage; 
         public Welcome()
         {
             InitializeComponent();
+            CheckProcess process = new CheckProcess();
+            //if(process.isRunning("chrome"))
+            //{
+            //    Process [] pr = Process.GetProcessesByName("chrome");
+            //    foreach (Process p in pr)
+            //        p.Kill();
+            //}
+            again:
+            try
+            {
+                if(new CheckProcess().isRunning("chrome"))
+                {
+                    MessageBox.Show("Please relaunch your chrome...");
+                    goto again;
+                }
+                ch = new ChromeHistory(StaticValues.prn);
+                //CheckProcess cp = new CheckProcess();
+                //if(!cp.isRunning("chrome"))
+                ch.SaveLastTime();
+                timer1.Start();
+                timer2.Start();
 
-            ch = new ChromeHistory(StaticValues.prn);
-            //CheckProcess cp = new CheckProcess();
-            //if(!cp.isRunning("chrome"))
-            ch.SaveLastTime();
-            timer1.Start();
-
-            this.WindowState = FormWindowState.Minimized;
+                this.WindowState = FormWindowState.Minimized;
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Please relaunch your chrome");
+                goto again;
+            }
+            
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -67,14 +92,7 @@ namespace SystemMonitoring.Forms
                 this.Text = "Done";
                 _ticks = 0;
 
-               
-                CaptureScreen cs = new CaptureScreen();
-                string fileName = cs.Screenshot();
-                string response = PostData.SendFileToServer(StaticValues.image);
-                DateTime dt = DateTime.Now;
-                Screenshot sc = new Screenshot(fileName, DateTime.Now.ToString(), StaticValues.prn , response);
-                PostData.SendToServer(sc, "screenshot");
-                Console.WriteLine("Response " + response);
+              
             }
         }
 
@@ -100,6 +118,42 @@ namespace SystemMonitoring.Forms
             Console.WriteLine("Application Closed");
            
             Application.Exit();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            _ticksImage++;
+            //this.Text = _ticksImage.ToString();
+            if (_ticksImage == 10)
+            {
+                CaptureScreen cs = new CaptureScreen();
+                string fileName = cs.Screenshot();
+                string response = PostData.SendFileToServer(StaticValues.image);
+                DateTime dt = DateTime.Now;
+                Screenshot sc = new Screenshot(fileName, DateTime.Now.ToString(), StaticValues.prn, response);
+                PostData.SendToServer(sc, "screenshot");
+                Console.WriteLine("Response " + response);
+
+                MessageBox.Show(_ticksImage.ToString());
+                File.Delete(response);
+                _ticksImage = 0;
+            }
+
+        }
+
+        private void Welcome_Resize(object sender, EventArgs e)
+        {
+            if (FormWindowState.Minimized == this.WindowState)
+            {
+                notifyIcon1.Visible = true;
+                //notifyIcon1.ShowBalloonTip(500);
+                this.Hide();
+            }
+
+            else if (FormWindowState.Normal == this.WindowState)
+            {
+                notifyIcon1.Visible = false;
+            }
         }
     }
 }

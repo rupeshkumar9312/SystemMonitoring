@@ -40,7 +40,8 @@ namespace SystemMonitoring.BusinessLogic
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Console.WriteLine(ex.ToString());
+                //MessageBox.Show(ex.ToString());
             }
             return fileName;
         }
