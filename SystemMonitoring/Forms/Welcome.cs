@@ -56,15 +56,25 @@ namespace SystemMonitoring.Forms
                         HttpResponseMessage msg = PostData.SendToServer(history, "history");
                         Console.WriteLine("Status Code " + msg.StatusCode);
                         ch.SaveLastTime();
+
+                        //CaptureScreen cs = new CaptureScreen();
+                        //cs.Screenshot();
+                        //string response = PostData.SendFileToServer(StaticValues.image);
+                        //DateTime dt = DateTime.Now;
+                        //Console.WriteLine("Response " + response);
                     }
                 }
                 this.Text = "Done";
                 _ticks = 0;
-                //CaptureScreen cs = new CaptureScreen();
-                //cs.Screenshot();
-                //DateTime dt = DateTime.Now;
 
-                
+               
+                CaptureScreen cs = new CaptureScreen();
+                string fileName = cs.Screenshot();
+                string response = PostData.SendFileToServer(StaticValues.image);
+                DateTime dt = DateTime.Now;
+                Screenshot sc = new Screenshot(fileName, DateTime.Now.ToString(), StaticValues.prn , response);
+                PostData.SendToServer(sc, "screenshot");
+                Console.WriteLine("Response " + response);
             }
         }
 

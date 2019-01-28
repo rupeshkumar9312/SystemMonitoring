@@ -36,7 +36,7 @@ namespace SystemMonitoring.Forms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-
+          
             //var client = new HttpClient();
             //var content = new MultipartFormDataContent();
             //content.Add(new StreamContent(File.Open("C:\\Users\\Rupesh\\Desktop\\CC.jpg", FileMode.Open)), "Image", "Image.png");

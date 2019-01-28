@@ -13,5 +13,6 @@ namespace SystemMonitoring.Model
         public  string history = "http://localhost:6080/WebApi/";
 
         public static string prn;
+        public static string image;
     }
 }

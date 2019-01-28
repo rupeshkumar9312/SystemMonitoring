@@ -6,17 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SystemMonitoring.Model;
 
 namespace SystemMonitoring.BusinessLogic
 {
     class CaptureScreen
     {
-        public void Screenshot()
+        public string Screenshot()
         {
+            string fileName = "";
             try
 
             {
-                
+                //MessageBox.Show("Capturing Screenshot");
                 Bitmap captureBitmap = new Bitmap(1024, 768,PixelFormat.Format32bppArgb);
 
 
@@ -29,16 +31,18 @@ namespace SystemMonitoring.BusinessLogic
 
 
                 //captureBitmap.Save(@"E:" + DateTime.Now.Ticks.ToString() + ".jpg");
-                string path = @"E:\DotNetTraining\Project\Screenshots\";
-                string fileName = DateTime.Now.Ticks + ".jpg";
+                string path = @"D:\Project\Screenshots\";
+                fileName = DateTime.Now.Ticks + ".jpg";
                 captureBitmap.Save(path + fileName , ImageFormat.Jpeg);
-
-                MessageBox.Show(path + fileName);
+                StaticValues.image = path + fileName;
+                return fileName;
+                //MessageBox.Show(StaticValues.image);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+            return fileName;
         }
     }
 }
